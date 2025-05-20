@@ -1,4 +1,5 @@
-"""python
+```python
+
 class Solution(object):
     def twoSum(self, nums, target):
         """
@@ -11,7 +12,7 @@ class Solution(object):
                 if nums[i]+nums[j]==target:
                     return [i,j]
                     break
-"""
+```
 
 # 感想
 forループを2つ回して愚直に行ったが，より効率の良いアルゴリズムがありそう．
