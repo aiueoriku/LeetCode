@@ -31,3 +31,25 @@ class Solution:
         return list(anagrams.values())
 ```
 defaultdictという文法を使うことで簡潔にかけたが，初期の方針でも書けるようにしたほうが良い気がする．
+
+# Step3
+初期の方針，つまりdefauldictを用いらずに解く
+```python
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagrams = {}
+
+        for str in strs:
+            str_sorted = "".join(sorted(str))
+            anagrams[str] = str_sorted
+
+        anagram_groups = {}
+        for str, str_sorted in anagrams.items():
+            if str_sorted not in anagram_groups:
+                anagram_groups[str_sorted] = []
+            anagram_groups[str_sorted].append(str)
+            
+        return [x for x in anagram_groups.values()]
+```
+strs = ["",""]に対して，出力がstrs =
+[""]となりエラー．
