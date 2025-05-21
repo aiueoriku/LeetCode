@@ -65,3 +65,32 @@ class Solution(object):
         return []
 ```
 実行時間は5ms同じコードなのに実行時間が違う．他に見るべき指標があるかも．
+
+# Step 4
+いただいたアドバイスを元に実装
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_to_index = {}
+        for i in range (len(nums)):
+            complement = target - nums[i]
+            if complement in num_to_index and num_to_index[complement]!=i:
+                return [i, num_to_index[complement]]
+            num_to_index[nums[i]] = i
+        return []
+```
+辞書の名前をnum_to_indexに変更して意味を分かりやすくした．
+for文を1つにまとめた．
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_to_index = {}
+        for i, num in enumerate(nums):
+            complement = target - num
+            if complement in num_to_index and num_to_index[complement]!=i:
+                return [num_to_index[complement], i]
+            num_to_index[num] = i
+        return []
+```
+enumerateでも書いてみた．個人的にはこちらのほうが好みかも．
