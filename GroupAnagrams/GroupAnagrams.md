@@ -53,3 +53,18 @@ class Solution:
 ```
 strs = ["",""]に対して，出力がstrs =
 [""]となりエラー．
+
+# Step4
+コメントを元に解き直し
+```python
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        str_to_sorted = {}
+        for s in strs:
+            s_sorted = "".join(sorted(s))
+            if s_sorted not in str_to_sorted:
+                str_to_sorted[s_sorted] = []
+            str_to_sorted[s_sorted].append(s)
+        return [word for word in str_to_sorted.values()]
+```
+Step3でおきたエラーも消えた．
