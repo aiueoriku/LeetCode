@@ -39,3 +39,17 @@ class Solution:
             valid_emails.add(email)
         return len(valid_emails)
 ```
+# Step4
+いただいたアドバイスを元に修正
+```python
+class Solution:
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        valid_emails = set()
+        for email in emails:
+            local, at, domain = email.partition("@")
+            local = local.split("+")[0]
+            local = local.replace(".", "")
+            email = f"{local}@{domain}"
+            valid_emails.add(email)
+        return len(valid_emails)
+```
