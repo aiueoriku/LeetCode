@@ -53,3 +53,22 @@ class Solution:
             valid_emails.add(email)
         return len(valid_emails)
 ```
+
+正規表現を使って解き直してみる
+```python
+class Solution:
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        valid_emails = set()
+        for email in emails:
+            local, domain = email.split('@')
+            local = re.sub(r'\+.*', '', local)
+            local = re.sub(r'\.', '', local)
+            email = f'{local}@{domain}'
+            valid_emails.add(email)
+        return len(valid_emails)
+```
+
+- r'.'はすべての文字列を対象とする
+- r'\.'は.自体を対象とする
+- [\w\.-]+@[\w\.-]+\.\w+とするとemailアドレスの識別に使えるらしい．本問題では，localに.が２つある場合適用できないため，re.subで対応した
+
