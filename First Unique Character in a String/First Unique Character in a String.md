@@ -42,3 +42,24 @@ class Solution:
         return -1
 ```
 Counterを使うほうが簡潔だし，処理速度も早い．
+
+# Step4
+コメントを受けて再度解き直す
+```python
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        char_to_count = defaultdict(int)
+        char_to_index = {}
+        for index, char in enumerate(s):
+            char_to_count[char] += 1
+            if char not in char_to_index:
+                char_to_index[char] = index
+        
+        min_index = len(s)
+        for char, count in char_to_count.items():
+            if count == 1:
+                if char_to_index[char] < min_index:
+                    min_index = char_to_index[char]
+        return min_index if min_index != len(s) else -1
+```
+char_to_indexに各文字の最初のインデックスを保持して，文字列全体に対するfor文の回数を1回で済むように改変した．
